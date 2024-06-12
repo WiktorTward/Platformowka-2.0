@@ -11,11 +11,26 @@ public class AnimationStateController : MonoBehaviour
     bool isLifting = false;
     bool isGathering = false; // Flag to track if gathering action is in progress
     bool isCrouching = false; // Flag to track if crouching action is in progress
-    bool isCrouchIdle = false; // Flag to track if crouch idle action is in progress
+    private bool isCrouchIdle = false; // Flag to track if crouch idle action is in progress
     public ECM2.Examples.ThirdPerson.ThirdPersonController move;
     public Character myRb;
 
-    void Start()
+    // Enum for animation states
+    private enum AnimationState
+    {
+        Idle,
+        Walking,
+        Running,
+        RunningJump,
+        WalkingJump,
+        IdleJump,
+        Lifting,
+        Crouching,
+        CrouchIdle,
+        Moving
+    }
+
+    void Awake()
     {
         animator = GetComponent<Animator>();
     }
@@ -87,15 +102,15 @@ public class AnimationStateController : MonoBehaviour
                 isJumping = true;
                 if (isRunning)
                 {
-                    animator.SetTrigger("isRunningJump");
+                    SetAnimatorTrigger(AnimationState.RunningJump);
                 }
                 else if (isWalking)
                 {
-                    animator.SetTrigger("isWalkingJump");
+                    SetAnimatorTrigger(AnimationState.WalkingJump);
                 }
                 else
                 {
-                    animator.SetTrigger("isIdleJump");
+                    SetAnimatorTrigger(AnimationState.IdleJump);
                 }
                 myRb.Jump(); // Trigger the physical jump
             }
@@ -108,19 +123,18 @@ public class AnimationStateController : MonoBehaviour
         // Handle crouching animations
         if (!isLifting && !isJumping && !isMidAir)
         {
-            // Handle crouch walking
             if (crouchPressed && !isCrouching)
             {
                 isCrouching = true;
-                animator.SetBool("isCrouching", true);
+                SetAnimatorBool(AnimationState.Crouching, true);
                 myRb.canEverJump = false; // Disable jumping while crouching
-                animator.SetBool("Moving", movePressed); // Set Moving based on player movement
+                SetAnimatorBool(AnimationState.Moving, movePressed); // Set Moving based on player movement
             }
             else if (!crouchHeld && isCrouching)
             {
                 isCrouching = false;
-                animator.SetBool("isCrouching", false);
-                animator.SetBool("Moving", false);
+                SetAnimatorBool(AnimationState.Crouching, false);
+                SetAnimatorBool(AnimationState.Moving, false);
                 StartCoroutine(EnableJumpAfterDelay(0.4f)); // Enable jumping after 0.4 seconds
             }
 
@@ -128,43 +142,92 @@ public class AnimationStateController : MonoBehaviour
             if (crouchIdlePressed && !isCrouchIdle)
             {
                 isCrouchIdle = true;
-                animator.SetBool("isCrouchIdle", true);
-                animator.SetBool("Moving", false);
+                SetAnimatorBool(AnimationState.CrouchIdle, true);
+                SetAnimatorBool(AnimationState.Moving, false);
                 myRb.canEverJump = false; // Disable jumping while crouch idle
             }
             else if (!crouchHeld && isCrouchIdle)
             {
                 isCrouchIdle = false;
-                animator.SetBool("isCrouchIdle", false);
-  
-                animator.SetBool("Moving", movePressed); // Set Moving based on player movement
+                SetAnimatorBool(AnimationState.CrouchIdle, false);
+                SetAnimatorBool(AnimationState.Moving, movePressed); // Set Moving based on player movement
                 StartCoroutine(EnableJumpAfterDelay(0.4f)); // Enable jumping after 0.4 seconds
             }
         }
 
-
         // Handle movement animations while not crouching
         if (!isCrouching && !isCrouchIdle && !isMidAir && !isJumping)
+        {
+            if (!isWalking && movePressed)
             {
-                if (!isWalking && movePressed)
-                {
-                    animator.SetBool("isWalking", true); // Enable walking animation
-                }
-                if (isWalking && !movePressed)
-                {
-                    animator.SetBool("isWalking", false); // Disable walking animation
-                }
-                if (!isRunning && (movePressed && runPressed))
-                {
-                    animator.SetBool("isRunning", true); // Enable running animation
-                }
-                if (isRunning && (!movePressed || !runPressed))
-                {
-                    animator.SetBool("isRunning", false); // Disable running animation
-                }
+                SetAnimatorBool(AnimationState.Walking, true); // Enable walking animation
+            }
+            else if (isWalking && !movePressed)
+            {
+                SetAnimatorBool(AnimationState.Walking, false); // Disable walking animation
+            }
+            if (!isRunning && (movePressed && runPressed))
+            {
+                SetAnimatorBool(AnimationState.Running, true); // Enable running animation
+            }
+            else if (isRunning && (!movePressed || !runPressed))
+            {
+                SetAnimatorBool(AnimationState.Running, false); // Disable running animation
             }
         }
+    }
+
+    private void SetAnimatorBool(AnimationState state, bool value)
+    {
+        switch (state)
+        {
+            case AnimationState.Walking:
+                animator.SetBool("isWalking", value);
+                break;
+            case AnimationState.Running:
+                animator.SetBool("isRunning", value);
+                break;
+            case AnimationState.Crouching:
+                animator.SetBool("isCrouching", value);
+                break;
+            case AnimationState.CrouchIdle:
+                animator.SetBool("isCrouchIdle", value);
+                break;
+            case AnimationState.Moving:
+                animator.SetBool("Moving", value);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void SetAnimatorTrigger(AnimationState state)
+    {
+        switch (state)
+        {
+            case AnimationState.RunningJump:
+                animator.SetTrigger("isRunningJump");
+                break;
+            case AnimationState.WalkingJump:
+                animator.SetTrigger("isWalkingJump");
+                break;
+            case AnimationState.IdleJump:
+                animator.SetTrigger("isIdleJump");
+                break;
+            case AnimationState.Lifting:
+                animator.SetTrigger("isLifting");
+                break;
+            default:
+                break;
+        }
+    }
 }
+
+
+
+
+
+
 
 
 
