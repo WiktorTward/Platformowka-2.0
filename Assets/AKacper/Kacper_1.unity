@@ -840,7 +840,6 @@ GameObject:
   - component: {fileID: 1147805731}
   - component: {fileID: 1147805730}
   - component: {fileID: 1147805729}
-  - component: {fileID: 1147805733}
   m_Layer: 0
   m_Name: Fall Damage
   m_TagString: Untagged
@@ -935,20 +934,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.54}
---- !u!114 &1147805733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147805727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75435cffc9e38d54799597f3caa8a04a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: 9166ef87fce99d04e9690701ac7198f7, type: 2}
-  alpha: 0.1
 --- !u!1 &1259376134
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,7 +946,6 @@ GameObject:
   - component: {fileID: 1259376138}
   - component: {fileID: 1259376137}
   - component: {fileID: 1259376136}
-  - component: {fileID: 1259376140}
   m_Layer: 0
   m_Name: Fall Damage (1)
   m_TagString: Untagged
@@ -1056,20 +1040,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -2.396, y: 21.407, z: 9.062}
---- !u!114 &1259376140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259376134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75435cffc9e38d54799597f3caa8a04a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transparentMaterial: {fileID: 2100000, guid: 9166ef87fce99d04e9690701ac7198f7, type: 2}
-  alpha: 0.1
 --- !u!1001 &1307195350
 PrefabInstance:
   m_ObjectHideFlags: 0
