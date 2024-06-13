@@ -8,15 +8,6 @@ public class AnimationStateController : MonoBehaviour
     Animator animator;
     bool isJumping = false;
     bool isLifting = false;
-<<<<<<< HEAD
-    bool isGathering = false; // Flag to track if gathering action is in progress
-    bool isCrouching = false; // Flag to track if crouching action is in progress
-    private bool isCrouchIdle = false; // Flag to track if crouch idle action is in progress
-    public ECM2.Examples.ThirdPerson.ThirdPersonController move;
-    public Character myRb;
-
-    // Enum for animation states
-=======
     bool isGathering = false;
     bool isCrouching = false;
     bool isCrouchIdle = false;
@@ -34,23 +25,11 @@ public class AnimationStateController : MonoBehaviour
     private string MovingAnim = "Moving";
 
     // Animation states
->>>>>>> origin/Kamil
     private enum AnimationState
     {
         Idle,
         Walking,
         Running,
-<<<<<<< HEAD
-        RunningJump,
-        WalkingJump,
-        IdleJump,
-        Lifting,
-        Crouching,
-        CrouchIdle,
-        Moving
-    }
-
-=======
         Jumping,
         Lifting,
         Crouching,
@@ -59,7 +38,6 @@ public class AnimationStateController : MonoBehaviour
 
     private AnimationState currentAnimationState = AnimationState.Idle;
 
->>>>>>> origin/Kamil
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -129,17 +107,6 @@ public class AnimationStateController : MonoBehaviour
                 isJumping = true;
                 if (isRunning)
                 {
-<<<<<<< HEAD
-                    SetAnimatorTrigger(AnimationState.RunningJump);
-                }
-                else if (isWalking)
-                {
-                    SetAnimatorTrigger(AnimationState.WalkingJump);
-                }
-                else
-                {
-                    SetAnimatorTrigger(AnimationState.IdleJump);
-=======
                     animator.SetTrigger(isRunningJumpAnim);
                 }
                 else if (isWalking)
@@ -149,7 +116,6 @@ public class AnimationStateController : MonoBehaviour
                 else
                 {
                     animator.SetTrigger(isIdleJumpAnim);
->>>>>>> origin/Kamil
                 }
                 myRb.Jump();
                 currentAnimationState = AnimationState.Jumping;
@@ -164,106 +130,6 @@ public class AnimationStateController : MonoBehaviour
         // Handle different animation states
         switch (currentAnimationState)
         {
-<<<<<<< HEAD
-            if (crouchPressed && !isCrouching)
-            {
-                isCrouching = true;
-                SetAnimatorBool(AnimationState.Crouching, true);
-                myRb.canEverJump = false; // Disable jumping while crouching
-                SetAnimatorBool(AnimationState.Moving, movePressed); // Set Moving based on player movement
-            }
-            else if (!crouchHeld && isCrouching)
-            {
-                isCrouching = false;
-                SetAnimatorBool(AnimationState.Crouching, false);
-                SetAnimatorBool(AnimationState.Moving, false);
-                StartCoroutine(EnableJumpAfterDelay(0.4f)); // Enable jumping after 0.4 seconds
-            }
-
-            // Handle crouch idle
-            if (crouchIdlePressed && !isCrouchIdle)
-            {
-                isCrouchIdle = true;
-                SetAnimatorBool(AnimationState.CrouchIdle, true);
-                SetAnimatorBool(AnimationState.Moving, false);
-                myRb.canEverJump = false; // Disable jumping while crouch idle
-            }
-            else if (!crouchHeld && isCrouchIdle)
-            {
-                isCrouchIdle = false;
-                SetAnimatorBool(AnimationState.CrouchIdle, false);
-                SetAnimatorBool(AnimationState.Moving, movePressed); // Set Moving based on player movement
-                StartCoroutine(EnableJumpAfterDelay(0.4f)); // Enable jumping after 0.4 seconds
-            }
-        }
-
-        // Handle movement animations while not crouching
-        if (!isCrouching && !isCrouchIdle && !isMidAir && !isJumping)
-        {
-            if (!isWalking && movePressed)
-            {
-                SetAnimatorBool(AnimationState.Walking, true); // Enable walking animation
-            }
-            else if (isWalking && !movePressed)
-            {
-                SetAnimatorBool(AnimationState.Walking, false); // Disable walking animation
-            }
-            if (!isRunning && (movePressed && runPressed))
-            {
-                SetAnimatorBool(AnimationState.Running, true); // Enable running animation
-            }
-            else if (isRunning && (!movePressed || !runPressed))
-            {
-                SetAnimatorBool(AnimationState.Running, false); // Disable running animation
-            }
-        }
-    }
-
-    private void SetAnimatorBool(AnimationState state, bool value)
-    {
-        switch (state)
-        {
-            case AnimationState.Walking:
-                animator.SetBool("isWalking", value);
-                break;
-            case AnimationState.Running:
-                animator.SetBool("isRunning", value);
-                break;
-            case AnimationState.Crouching:
-                animator.SetBool("isCrouching", value);
-                break;
-            case AnimationState.CrouchIdle:
-                animator.SetBool("isCrouchIdle", value);
-                break;
-            case AnimationState.Moving:
-                animator.SetBool("Moving", value);
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void SetAnimatorTrigger(AnimationState state)
-    {
-        switch (state)
-        {
-            case AnimationState.RunningJump:
-                animator.SetTrigger("isRunningJump");
-                break;
-            case AnimationState.WalkingJump:
-                animator.SetTrigger("isWalkingJump");
-                break;
-            case AnimationState.IdleJump:
-                animator.SetTrigger("isIdleJump");
-                break;
-            case AnimationState.Lifting:
-                animator.SetTrigger("isLifting");
-                break;
-            default:
-                break;
-        }
-    }
-=======
             case AnimationState.Idle:
                 if (!isLifting && !isJumping && !isMidAir)
                 {
@@ -382,29 +248,4 @@ public class AnimationStateController : MonoBehaviour
                 break;
         }
     }
->>>>>>> origin/Kamil
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> origin/Kamil
