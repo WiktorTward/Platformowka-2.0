@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/AWiktorG/main menu.unity
+    guid: 54fcf703dabf5f540b7cbe7989eb4136
+  - enabled: 1
+    path: Assets/AWiktorG/WiktorGG.unity
+    guid: bbf442eaa98645e499949a153eeeac00
   m_configObjects: {}
