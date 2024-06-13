@@ -1,4 +1,3 @@
-using ECM2;
 using UnityEngine;
 
 public class SquidGameJumper : MonoBehaviour
@@ -8,21 +7,9 @@ public class SquidGameJumper : MonoBehaviour
 
     private Rigidbody rb;
 
-    private void Start()
+    private void OnCollisionEnter(Collision collision)
     {
-        rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true; 
-    }
-
-    
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Player"))
-            return;
-
-        Character character = other.GetComponent<Character>();
-        if (character)
+        if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("touch");
             rb.isKinematic = false;
