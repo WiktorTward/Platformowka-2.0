@@ -1,7 +1,6 @@
 using ECM2;
 using ECM2.Examples.PlanetWalk;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationStateController : MonoBehaviour
@@ -9,6 +8,7 @@ public class AnimationStateController : MonoBehaviour
     Animator animator;
     bool isJumping = false;
     bool isLifting = false;
+<<<<<<< HEAD
     bool isGathering = false; // Flag to track if gathering action is in progress
     bool isCrouching = false; // Flag to track if crouching action is in progress
     private bool isCrouchIdle = false; // Flag to track if crouch idle action is in progress
@@ -16,11 +16,31 @@ public class AnimationStateController : MonoBehaviour
     public Character myRb;
 
     // Enum for animation states
+=======
+    bool isGathering = false;
+    bool isCrouching = false;
+    bool isCrouchIdle = false;
+    public ECM2.Examples.ThirdPerson.ThirdPersonController move;
+    public Character myRb;
+
+    // Animator parameter names
+    private string isCrouchingAnimator = "isCrouching";
+    private string isCrouchingIdleAnim = "isCrouchIdle";
+    private string isWalkingAnim = "isWalking";
+    private string isRunningJumpAnim = "isRunningJump";
+    private string isWalkingJumpAnim = "isWalkingJump";
+    private string isIdleJumpAnim = "isIdleJump";
+    private string isRunningAnim = "isRunning";
+    private string MovingAnim = "Moving";
+
+    // Animation states
+>>>>>>> origin/Kamil
     private enum AnimationState
     {
         Idle,
         Walking,
         Running,
+<<<<<<< HEAD
         RunningJump,
         WalkingJump,
         IdleJump,
@@ -30,21 +50,31 @@ public class AnimationStateController : MonoBehaviour
         Moving
     }
 
+=======
+        Jumping,
+        Lifting,
+        Crouching,
+        CrouchIdle
+    }
+
+    private AnimationState currentAnimationState = AnimationState.Idle;
+
+>>>>>>> origin/Kamil
     void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    // Coroutine function for waiting before resuming movement after lifting an object
+    // Coroutine to wait during the lifting animation
     IEnumerator LiftWait()
     {
         yield return new WaitForSeconds(2.2f);
-        move.enabled = true; // Re-enable character movement
-        myRb.enabled = true; // Re-enable character physics
-        isGathering = false; // Reset gathering flag after the action is completed
+        move.enabled = true;
+        myRb.enabled = true;
+        isGathering = false;
     }
 
-    // Coroutine function for enabling jump after a delay
+    // Coroutine to enable jumping after a delay
     IEnumerator EnableJumpAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -53,12 +83,11 @@ public class AnimationStateController : MonoBehaviour
 
     void Update()
     {
-        // Retrieve the current animation state information
         AnimatorStateInfo currentStateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        // Retrieve input states for various character actions
-        bool isRunning = animator.GetBool("isRunning");
-        bool isWalking = animator.GetBool("isWalking");
+        // Input checks
+        bool isRunning = animator.GetBool(isRunningAnim);
+        bool isWalking = animator.GetBool(isWalkingAnim);
         bool movePressed = Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("d") || Input.GetKey("s");
         bool runPressed = Input.GetKey("left shift");
         bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
@@ -67,13 +96,10 @@ public class AnimationStateController : MonoBehaviour
         bool crouchIdlePressed = Input.GetKey(KeyCode.LeftControl) && !movePressed;
         bool crouchHeld = Input.GetKey(KeyCode.LeftControl);
 
-        // Check if the character is currently holding or lifting an object
+        // Check if currently lifting or in mid-air
         isLifting = currentStateInfo.IsTag("Lifting");
-
-        // Check if the character is currently jumping (mid-air)
         bool isMidAir = !myRb.IsGrounded();
 
-        // Block certain actions if the character is holding, lifting, or mid-air
         if (isLifting || isMidAir)
         {
             movePressed = false;
@@ -84,17 +110,18 @@ public class AnimationStateController : MonoBehaviour
             crouchHeld = false;
         }
 
-        // Handle lifting an object
+        // Lifting logic
         if (liftPressed && !isLifting && !isGathering && !isMidAir)
         {
             animator.SetTrigger("isLifting");
             move.enabled = false;
             myRb.enabled = false;
-            isGathering = true; // Set gathering flag to prevent multiple triggers
-            StartCoroutine(LiftWait()); // Start coroutine to wait before resuming movement
+            isGathering = true;
+            StartCoroutine(LiftWait());
+            currentAnimationState = AnimationState.Lifting;
         }
 
-        // Handle character jumping
+        // Jumping logic
         if (!isLifting && !isMidAir)
         {
             if (jumpPressed && !isJumping)
@@ -102,6 +129,7 @@ public class AnimationStateController : MonoBehaviour
                 isJumping = true;
                 if (isRunning)
                 {
+<<<<<<< HEAD
                     SetAnimatorTrigger(AnimationState.RunningJump);
                 }
                 else if (isWalking)
@@ -111,18 +139,32 @@ public class AnimationStateController : MonoBehaviour
                 else
                 {
                     SetAnimatorTrigger(AnimationState.IdleJump);
+=======
+                    animator.SetTrigger(isRunningJumpAnim);
                 }
-                myRb.Jump(); // Trigger the physical jump
+                else if (isWalking)
+                {
+                    animator.SetTrigger(isWalkingJumpAnim);
+                }
+                else
+                {
+                    animator.SetTrigger(isIdleJumpAnim);
+>>>>>>> origin/Kamil
+                }
+                myRb.Jump();
+                currentAnimationState = AnimationState.Jumping;
             }
             if (!Input.GetKey(KeyCode.Space))
             {
-                isJumping = false; // Reset jumping flag if jump key is released
+                isJumping = false;
+                currentAnimationState = AnimationState.Idle;
             }
         }
 
-        // Handle crouching animations
-        if (!isLifting && !isJumping && !isMidAir)
+        // Handle different animation states
+        switch (currentAnimationState)
         {
+<<<<<<< HEAD
             if (crouchPressed && !isCrouching)
             {
                 isCrouching = true;
@@ -221,6 +263,126 @@ public class AnimationStateController : MonoBehaviour
                 break;
         }
     }
+=======
+            case AnimationState.Idle:
+                if (!isLifting && !isJumping && !isMidAir)
+                {
+                    if (crouchPressed && !isCrouching)
+                    {
+                        isCrouching = true;
+                        isCrouchIdle = false;
+                        animator.SetBool(isCrouchingAnimator, true);
+                        animator.SetBool(isCrouchingIdleAnim, false);
+                        myRb.canEverJump = false;
+                        animator.SetBool(MovingAnim, movePressed);
+                        currentAnimationState = AnimationState.Crouching;
+                    }
+                    else if (crouchIdlePressed && !isCrouchIdle)
+                    {
+                        isCrouching = false;
+                        isCrouchIdle = true;
+                        animator.SetBool(isCrouchingAnimator, false);
+                        animator.SetBool(isCrouchingIdleAnim, true);
+                        animator.SetBool(MovingAnim, false);
+                        myRb.canEverJump = false;
+                        currentAnimationState = AnimationState.CrouchIdle;
+                    }
+                    else if (!crouchHeld && (isCrouching || isCrouchIdle))
+                    {
+                        isCrouching = false;
+                        isCrouchIdle = false;
+                        animator.SetBool(isCrouchingAnimator, false);
+                        animator.SetBool(isCrouchingIdleAnim, false);
+                        animator.SetBool(MovingAnim, false);
+                        StartCoroutine(EnableJumpAfterDelay(0.4f));
+                        currentAnimationState = AnimationState.Idle;
+                    }
+                }
+
+                if (!isCrouching && !isCrouchIdle && !isMidAir && !isJumping)
+                {
+                    if (!isWalking && movePressed)
+                    {
+                        animator.SetBool(isWalkingAnim, true);
+                        currentAnimationState = AnimationState.Walking;
+                    }
+                    else if (isWalking && !movePressed)
+                    {
+                        animator.SetBool(isWalkingAnim, false);
+                        currentAnimationState = AnimationState.Idle;
+                    }
+                    else if (!isRunning && (movePressed && runPressed))
+                    {
+                        animator.SetBool(isRunningAnim, true);
+                        currentAnimationState = AnimationState.Running;
+                    }
+                    else if (isRunning && (!movePressed || !runPressed))
+                    {
+                        animator.SetBool(isRunningAnim, false);
+                        currentAnimationState = AnimationState.Idle;
+                    }
+                }
+                break;
+
+            case AnimationState.Crouching:
+                if (!crouchHeld)
+                {
+                    isCrouching = false;
+                    animator.SetBool(isCrouchingAnimator, false);
+                    animator.SetBool(isCrouchingIdleAnim, false);
+                    animator.SetBool(MovingAnim, false);
+                    StartCoroutine(EnableJumpAfterDelay(0.4f));
+                    currentAnimationState = AnimationState.Idle;
+                }
+                break;
+
+            case AnimationState.CrouchIdle:
+                if (!crouchHeld)
+                {
+                    isCrouchIdle = false;
+                    animator.SetBool(isCrouchingAnimator, false);
+                    animator.SetBool(isCrouchingIdleAnim, false);
+                    animator.SetBool(MovingAnim, false);
+                    StartCoroutine(EnableJumpAfterDelay(0.4f));
+                    currentAnimationState = AnimationState.Idle;
+                }
+                break;
+
+            case AnimationState.Walking:
+                if (!movePressed)
+                {
+                    animator.SetBool(isWalkingAnim, false);
+                    currentAnimationState = AnimationState.Idle;
+                }
+                else if (movePressed && runPressed)
+                {
+                    animator.SetBool(isRunningAnim, true);
+                    currentAnimationState = AnimationState.Running;
+                }
+                break;
+
+            case AnimationState.Running:
+                if (!movePressed || !runPressed)
+                {
+                    animator.SetBool(isRunningAnim, false);
+                    currentAnimationState = AnimationState.Idle;
+                }
+                break;
+
+            case AnimationState.Jumping:
+                if (!Input.GetKey(KeyCode.Space))
+                {
+                    isJumping = false;
+                    currentAnimationState = AnimationState.Idle;
+                }
+                break;
+
+            case AnimationState.Lifting:
+                // Do nothing, waiting for the lift animation to finish
+                break;
+        }
+    }
+>>>>>>> origin/Kamil
 }
 
 
@@ -240,6 +402,9 @@ public class AnimationStateController : MonoBehaviour
 
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> origin/Kamil
