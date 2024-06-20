@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SquidGameJumper : MonoBehaviour
 {
@@ -6,6 +7,11 @@ public class SquidGameJumper : MonoBehaviour
     public float fallSpeed = 10f;
 
     private Rigidbody rb;
+
+    private void Start()
+    {
+        rb.isKinematic = true;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
