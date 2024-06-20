@@ -44,16 +44,46 @@ public class Game_manager_nachos : MonoBehaviour
 
     public void AddPointNachos()
     {
-        scoreN++;
-        Debug.Log("+1 PointNachos");
-        scoreNachosText.text = "Score Nachos: " + scoreN.ToString();
+        if (scoreN > 5)
+        {
+            scoreNachosText.text = "WRONG AMOUNT NACHOS";
+            return;
+        }
+
+        if (scoreN < 5 || scoreT < 4)
+        {
+            scoreN++;
+            Debug.Log("+1 PointNachos");
+            scoreNachosText.text = "Score Nachos: " + scoreN.ToString();
+        }
+
+        if (scoreN == 5 && scoreT == 4)
+        {
+            Debug.Log("You win");
+            EndGame();
+        }
     }
 
     public void AddPointThumbnail()
     {
-        scoreT++;
-        Debug.Log("+1 PointThumbnail");
-        scoreThumbnailText.text = "Score Thumbnail: " + scoreT.ToString();
+        if (scoreT > 4)
+        {
+            scoreThumbnailText.text = "WRONG AMOUNT THUMBNAIL";
+            return;
+        }
+
+        if (scoreT < 4 || scoreN < 5)
+        {
+            scoreT++;
+            Debug.Log("+1 PointThumbnail");
+            scoreThumbnailText.text = "Score Thumbnail: " + scoreT.ToString();
+        }
+
+        if (scoreN == 5 && scoreT == 4)
+        {
+            Debug.Log("You win");
+            EndGame();
+        }
     }
 
     void EndGame()

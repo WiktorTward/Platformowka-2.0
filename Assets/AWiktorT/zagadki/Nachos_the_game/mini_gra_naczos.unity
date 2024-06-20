@@ -323,8 +323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98800d8c97551dd45b737fb6446a696c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreNachosText: {fileID: 0}
-  scoreThumbnailText: {fileID: 0}
+  scoreNachosText: {fileID: 2118749096}
+  scoreThumbnailText: {fileID: 1276913141}
   timerText: {fileID: 2021099235}
   gameTime: 60
 --- !u!1 &847077137
@@ -610,8 +610,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -545.1418, y: 222.3}
-  m_SizeDelta: {x: 259.7164, y: 30}
+  m_AnchoredPosition: {x: -522.364, y: 222.3}
+  m_SizeDelta: {x: 305.2719, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1276913141
 MonoBehaviour:
@@ -930,8 +930,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -566.4292, y: 275}
-  m_SizeDelta: {x: 217.1417, y: 30}
+  m_AnchoredPosition: {x: -539.34106, y: 275}
+  m_SizeDelta: {x: 271.3178, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2118749096
 MonoBehaviour:
