@@ -1,17 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageDealer : MonoBehaviour
+public class TransparencyController : MonoBehaviour
 {
-    public int damage = 1;
+    public Material transparentMaterial;
+    public float alpha = 0.1f; // wartoœæ przezroczystoœci od 0 (ca³kowicie przezroczysty) do 1 (ca³kowicie nieprzezroczysty)
 
-    private void OnCollisionEnter(Collision collision)
+    void Start()
     {
-        HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
-        if (healthSystem != null)
-        {
-            healthSystem.TakeDamage(damage);
-        }
+        SetTransparency(alpha);
+    }
+
+    void SetTransparency(float alpha)
+    {
+        Color color = transparentMaterial.color;
+        color.a = alpha;
+        transparentMaterial.color = color;
     }
 }

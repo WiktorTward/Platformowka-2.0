@@ -5,29 +5,30 @@ using ECM2;
 
 public class SprintController : MonoBehaviour
 {
-    public Character character; // Referencja do skryptu "Character"
-    public float sprintMultiplier = 1.5f; // Mno¿nik prêdkoœci sprintu
+    public Character character; // Reference to the "Character" script
+    public float sprintMultiplier = 1.5f; // Multiplier for sprint speed
 
-    private float originalMaxWalkSpeed; // Oryginalna wartoœæ prêdkoœci chodzenia
+    private float originalMaxWalkSpeed; // Original walking speed value
 
     private void Start()
     {
-        originalMaxWalkSpeed = character.maxWalkSpeed; // Zapamiêtaj oryginaln¹ prêdkoœæ chodzenia
+        originalMaxWalkSpeed = character.maxWalkSpeed; // Store the original walking speed
     }
 
     private void Update()
     {
-        // SprawdŸ, czy przycisk LShift jest wciœniêty
+        // Check if the Left Shift key is pressed
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            // Jeœli tak, ustaw prêdkoœæ chodzenia na mno¿nik prêdkoœci sprintu
+            // If Left Shift is pressed, increase the character's walking speed to achieve sprinting
             character.maxWalkSpeed = originalMaxWalkSpeed * sprintMultiplier;
         }
         else
         {
-            // Jeœli nie, przywróæ oryginaln¹ prêdkoœæ chodzenia
+            // If Left Shift is not pressed, reset the character's walking speed to its original value
             character.maxWalkSpeed = originalMaxWalkSpeed;
         }
     }
 }
+
 
