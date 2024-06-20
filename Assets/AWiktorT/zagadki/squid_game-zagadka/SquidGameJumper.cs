@@ -8,10 +8,7 @@ public class SquidGameJumper : MonoBehaviour
 
     private Rigidbody rb;
 
-    private void Start()
-    {
-        rb.isKinematic = true;
-    }
+   
 
     private void OnCollisionEnter(Collision collision)
     {

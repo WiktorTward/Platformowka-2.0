@@ -23,8 +23,12 @@ public class PlayerRespawn : MonoBehaviour
         transform.position = checkpointManager.GetCheckpoint();
         Debug.Log("Player respawned at: " + checkpointManager.GetCheckpoint());
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("death"))
+        {
+            Respawn();
+        }
+    }
 }
-
-
-
-
