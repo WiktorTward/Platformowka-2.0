@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 1147805731}
   - component: {fileID: 1147805730}
   - component: {fileID: 1147805729}
+  - component: {fileID: 1147805733}
   m_Layer: 0
   m_Name: Fall Damage
   m_TagString: Untagged
@@ -366,7 +367,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147805727}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -418,12 +419,24 @@ Transform:
   m_GameObject: {fileID: 1147805727}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.057043143, w: 0.9983718}
-  m_LocalPosition: {x: -322.4, y: 215.7, z: -1577.3}
-  m_LocalScale: {x: 50, y: 0, z: 20}
+  m_LocalPosition: {x: 189.7045, y: -108.294975, z: -93.32044}
+  m_LocalScale: {x: 63.83059, y: 0, z: 25.532234}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 7834276390836429537}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.54}
+--- !u!114 &1147805733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147805727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596c05d9226390540959458922cc101d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1259376134
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,6 +449,7 @@ GameObject:
   - component: {fileID: 1259376138}
   - component: {fileID: 1259376137}
   - component: {fileID: 1259376136}
+  - component: {fileID: 1259376140}
   m_Layer: 0
   m_Name: Fall Damage (1)
   m_TagString: Untagged
@@ -472,7 +486,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259376134}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -524,12 +538,24 @@ Transform:
   m_GameObject: {fileID: 1259376134}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0058118217, y: 0.18673006, z: 0.081478514, w: 0.9790094}
-  m_LocalPosition: {x: -788.5, y: 141.3, z: -1357.2}
-  m_LocalScale: {x: 70, y: 0, z: 30}
+  m_LocalPosition: {x: -405.32422, y: -203.27487, z: 187.66191}
+  m_LocalScale: {x: 89.362816, y: 0, z: 38.29835}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 7834276390836429537}
   m_LocalEulerAnglesHint: {x: -2.396, y: 21.407, z: 9.062}
+--- !u!114 &1259376140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259376134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596c05d9226390540959458922cc101d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1824167348
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,9 +759,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3043693503836832321, guid: 154748a2c0ddfd349ab650de30d7fbf1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1147805732}
+    - targetCorrespondingSourceObject: {fileID: 3043693503836832321, guid: 154748a2c0ddfd349ab650de30d7fbf1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1259376139}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 154748a2c0ddfd349ab650de30d7fbf1, type: 3}
+--- !u!4 &7834276390836429537 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3043693503836832321, guid: 154748a2c0ddfd349ab650de30d7fbf1, type: 3}
+  m_PrefabInstance: {fileID: 6374299447216804186}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -744,6 +781,4 @@ SceneRoots:
   - {fileID: 3595919755144922994}
   - {fileID: 1034410664}
   - {fileID: 1824167351}
-  - {fileID: 1147805732}
-  - {fileID: 1259376139}
   - {fileID: 6374299447216804186}
