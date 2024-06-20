@@ -1,7 +1,7 @@
+using ECM2;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ECM2;
 
 public class SprintController : MonoBehaviour
 {
@@ -30,5 +30,3 @@ public class SprintController : MonoBehaviour
         }
     }
 }
-
-
