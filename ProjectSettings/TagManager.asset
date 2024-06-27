@@ -4,7 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Eggs
+=======
+  - Waypoint
+  - Sparrow
+>>>>>>> origin/Luke
   layers:
   - Default
   - TransparentFX
