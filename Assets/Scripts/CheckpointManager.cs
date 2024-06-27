@@ -10,7 +10,7 @@ public class CheckpointManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Zachowaj ten obiekt miêdzy scenami
+            //DontDestroyOnLoad(gameObject); // Zachowaj ten obiekt miêdzy scenami
         }
         else
         {

@@ -46,9 +46,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.2763789
   m_TransitionOffset: 0
-  m_ExitTime: 0
+  m_ExitTime: 0.0000000014065747
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -90,7 +90,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isCrouchIdle
     m_EventTreshold: 0
-  - m_ConditionMode: 1
+  - m_ConditionMode: 2
     m_ConditionEvent: isCrouching
     m_EventTreshold: 0
   - m_ConditionMode: 2
@@ -854,9 +854,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.050499137
+  m_TransitionDuration: 0.14245623
   m_TransitionOffset: 0
-  m_ExitTime: 0
+  m_ExitTime: 6.3295835e-10
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -983,7 +983,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.31250995
   m_TransitionOffset: 0
   m_ExitTime: 0.70000005
   m_HasExitTime: 1

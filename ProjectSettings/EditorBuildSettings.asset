@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AWiktorT/zagadki/zagadka_kot/zagadka_z_kotkiem.unity
     guid: 6578926a9e530de439ae209c1ddf3389
+  - enabled: 1
+    path: Assets/AKacper/Kacper_1.unity
+    guid: 56d0d5fa0093ed44d962a531104abaf9
+  - enabled: 1
+    path: Assets/AWiktorT/zagadki/Nachos_the_game/mini_gra_naczos.unity
+    guid: e65acca2fd7351740aa2411c517ec62e
   m_configObjects: {}

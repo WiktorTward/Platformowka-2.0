@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Game_manager_nachos : MonoBehaviour
@@ -47,7 +48,7 @@ public class Game_manager_nachos : MonoBehaviour
         if (scoreN > 5)
         {
             scoreNachosText.text = "WRONG AMOUNT NACHOS";
-            return;
+            SceneManager.LoadScene("mini_gra_naczos");
         }
 
         if (scoreN < 5 || scoreT < 4)
@@ -69,7 +70,7 @@ public class Game_manager_nachos : MonoBehaviour
         if (scoreT > 4)
         {
             scoreThumbnailText.text = "WRONG AMOUNT THUMBNAIL";
-            return;
+            SceneManager.LoadScene("mini_gra_naczos");
         }
 
         if (scoreT < 4 || scoreN < 5)
@@ -77,6 +78,7 @@ public class Game_manager_nachos : MonoBehaviour
             scoreT++;
             Debug.Log("+1 PointThumbnail");
             scoreThumbnailText.text = "Score Thumbnail: " + scoreT.ToString();
+   
         }
 
         if (scoreN == 5 && scoreT == 4)
@@ -89,6 +91,6 @@ public class Game_manager_nachos : MonoBehaviour
     void EndGame()
     {
         Debug.Log("Game Over! Final Score Nachos: " + scoreN + " Final Score Thumbnail: " + scoreT);
-        // Add additional end game logic here, e.g., display a game over screen
+        SceneManager.LoadScene("Kacper_1");
     }
 }
